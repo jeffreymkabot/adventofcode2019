@@ -11,11 +11,11 @@ function vertices(edgeList: string[][]): string[] {
  * @param vertex
  */
 function orbits(edgeList: string[][], vertex: string): string[] {
-	const directOrbit = edgeList.find(e => e[1] === vertex);
-	if (!directOrbit) {
-		return [];
-	}
-	const directParent = directOrbit[0];
+    const directOrbit = edgeList.find(e => e[1] === vertex);
+    if (!directOrbit) {
+        return [];
+    }
+    const directParent = directOrbit[0];
     return [directParent].concat(orbits(edgeList, directParent));
 }
 
@@ -31,9 +31,9 @@ export function getInput(): string[][] {
 }
 
 if (require.main === module) {
-	const edgeList = getInput();
-	const vs = vertices(edgeList);
-	const os = vs.map(v => orbits(edgeList, v));
-	const sum = os.reduce((p, v) => p + v.length, 0);
-	console.log(sum);
+    const edgeList = getInput();
+    const vs = vertices(edgeList);
+    const os = vs.map(v => orbits(edgeList, v));
+    const sum = os.reduce((p, v) => p + v.length, 0);
+    console.log(sum);
 }

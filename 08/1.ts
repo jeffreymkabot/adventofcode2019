@@ -8,9 +8,9 @@ export function intoLayers(
     width: number,
     height: number
 ): Layer[] {
-	if (width === 0 || height === 0) {
-		throw new Error(`Invalid width ${width} and height ${height}.`);
-	}
+    if (width === 0 || height === 0) {
+        throw new Error(`Invalid width ${width} and height ${height}.`);
+    }
     const result = [] as Layer[];
     const layerSize = width * height;
     for (let i = 0; i < digits.length; i += layerSize) {
@@ -46,12 +46,12 @@ function countDigits(layer: Layer): Record<number, number> {
 
 if (require.main === module) {
     const [digits, width, height] = getInput();
-	const layers = intoLayers(digits, width, height);
+    const layers = intoLayers(digits, width, height);
     const layerCounts = layers.map(layer => ({
         layer,
         count: countDigits(layer)
     }));
-	const fewestZeroes = layerCounts.sort((a, b) => a.count[0] - b.count[0])[0];
-	const result = fewestZeroes.count[1] * fewestZeroes.count[2];
-	console.log(result);
+    const fewestZeroes = layerCounts.sort((a, b) => a.count[0] - b.count[0])[0];
+    const result = fewestZeroes.count[1] * fewestZeroes.count[2];
+    console.log(result);
 }

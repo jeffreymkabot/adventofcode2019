@@ -21,7 +21,7 @@ function shortestPaths(
         const v = queue.shift() as string;
         const neighbors = _.flatten(edgeList.filter(e => e.includes(v))).filter(
             n => n !== v
-		);
+        );
         neighbors.forEach(n => {
             if (visited.includes(n)) {
                 return;
