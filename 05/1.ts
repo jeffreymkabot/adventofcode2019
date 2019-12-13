@@ -57,7 +57,8 @@ export const ops: Op[] = [
             const [a] = args;
             const inp = cpu.inputs.shift();
             if (inp == null) {
-                throw new Error("Not enough inputs.");
+                // day 07 uses subclass to identify that a CPU is awaiting results of another CPU
+                throw new NotEnoughInputError("Not enough inputs.");
             }
             cpu.memory[a] = inp;
             cpu.ptr += 2;
@@ -82,6 +83,9 @@ export const ops: Op[] = [
         }
     }
 ];
+
+// day 07 uses subclass to identify that a CPU is awaiting results of another CPU
+export class NotEnoughInputError extends Error {}
 
 export function execute(ops: Op[], prog: Program): Result {
     const cpu: CPU = {

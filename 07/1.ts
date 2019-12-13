@@ -42,12 +42,13 @@ export function series(instr: number[], combo: number[]): number {
 
 export function maxCombo(
     instr: number[],
-    combos: number[][]
+    combos: number[][],
+    exec: (instr: number[], combo: number[]) => number
 ): { max: number; maxCombo: number[] } {
     let max = -Infinity;
     let maxCombo = combos[0];
     combos.forEach(c => {
-        const output = series(instr, c);
+        const output = exec(instr, c);
         if (output > max) {
             max = output;
             maxCombo = c;
@@ -59,6 +60,6 @@ export function maxCombo(
 if (require.main === module) {
     const [instr] = getInput();
     const combos = permutations([0, 1, 2, 3, 4]);
-    const result = maxCombo(instr, combos);
+    const result = maxCombo(instr, combos, series);
     console.log(result.max, result.maxCombo);
 }
