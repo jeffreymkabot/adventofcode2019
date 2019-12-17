@@ -111,7 +111,7 @@ export function decodeNextOp(cpu: CPU) {
     const modes = [
         Math.floor(instr / 100) % 10, // hundreds digit
         Math.floor(instr / 1000) % 10, // thousands digit
-        Math.floor(instr / 1000) % 10 // ten thousands digit
+        Math.floor(instr / 10000) % 10 // ten thousands digit
     ] as (0 | 1)[];
 
     const opcode = instr % 100;
